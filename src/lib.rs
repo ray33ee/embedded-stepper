@@ -16,7 +16,43 @@
 //! - Concrete coil drivers for common wirings live under [`motors`].
 //!
 //! ## Quick start
+//!
+//! The following example works with the esp32-c3 development board:
+//!
 //! ```no_run
+//! //Setup clock and peripherals
+//! let config = esp_hal::Config::default().with_cpu_clock(CpuClock::default());
+//! let peripherals = esp_hal::init(config);
+//!
+//! //Get the 4 GPIO pins, change these values based on your wiring
+//! let p1 = peripherals.GPIO0;
+//! let p2 = peripherals.GPIO1;
+//! let p3 = peripherals.GPIO2;
+//! let p4 = peripherals.GPIO3;
+//!
+//! //Set up the 4 pins as output, low, no pull and Push/Pull (default output config)
+//! let op1 = Output::new(p1, Level::Low, OutputConfig::default());
+//! let op2 = Output::new(p2, Level::Low, OutputConfig::default());
+//! let op3 = Output::new(p3, Level::Low, OutputConfig::default());
+//! let op4 = Output::new(p4, Level::Low, OutputConfig::default());
+//!
+//! //Adjust these values to fit your stepper motor. See the Arduino stepper library for more info
+//! let speed = 625;
+//! let steps_per_rev = 48;
+//!
+//! //Instantiate the motor with the 4 output pins
+//! let mut motor = create_stepper_4pin(op1, op2, op3, op4, Delay::new(), steps_per_rev);
+//!
+//! motor.set_speed(speed);
+//!
+//! //Turn motor
+//! let _ = motor.step(steps_per_rev as i32 * 10);
+//!
+//! //Reverse motor
+//! let _ = motor.step(steps_per_rev as i32 * -10);
+//!
+//! //Deenergise coils after use
+//! let _ = motor.deenergise();
 //! ```
 pub mod driver;
 pub mod stepper;
