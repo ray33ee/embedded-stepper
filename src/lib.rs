@@ -11,7 +11,7 @@
 //! [source](https://github.com/arduino-libraries/Stepper/blob/master/src/Stepper.cpp).
 //!
 //! ## Design
-//! - You supply a _coil driver_ that implements [StepperMotor](`driver::StepperMotor`)
+//! - You supply a _coil driver_ that implements [StepperMotor](`driver::StepperMotor`) (or use one of the built-in drivers in [`motors`])
 //! - The high-level [Stepper](`stepper::Stepper`) performs stepping exposing the same functions as Arduino stepper.
 //! - Concrete coil drivers for common wirings live under [`motors`].
 //!
