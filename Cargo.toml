@@ -1,0 +1,31 @@
+[package]
+name = "embedded-stepper"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "no_std stepper motor driver traits and implementations based on Arduino stepper for embedded-hal"
+repository = "https://example.com/ray33ee/embedded_stepper"
+keywords = ["embedded", "stepper", "motor", "no-std", "hal"]
+categories = ["embedded", "no-std"]
+
+# Use the new feature resolver so dev-deps don't pull in std accidentally.
+resolver = "2"
+
+[lib]
+# Default rlib; no_std is set in src/lib.rs with #![no_std]
+path = "src/lib.rs"
+
+[dependencies]
+embedded-hal = { version = "1.0", default-features = false }
+
+# Optional logging for embedded targets (kept optional to preserve no_std by default)
+defmt = { version = "0.3", optional = true }
+
+[features]
+default = []            # Keep the crate strictly no_std by default
+defmt-logging = ["defmt"]  # Example optional feature that still works in no_std
+
+[package.metadata.docs.rs]
+# Build docs for embedded targets; keep features minimal.
+targets = ["thumbv7em-none-eabihf", "riscv32imac-unknown-none-elf"]
+all-features = false
