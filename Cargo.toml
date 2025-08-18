@@ -1,10 +1,10 @@
 [package]
 name = "embedded-stepper"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 license = "MIT"
 description = "Hardware agnostic, no_std stepper motor driver based on Arduino stepper using embedded-hal"
-repository = "https://example.com/ray33ee/embedded_stepper"
+repository = "https://github.com/ray33ee/embedded-stepper"
 keywords = ["embedded", "stepper", "motor", "no-std", "hal"]
 categories = ["embedded", "no-std"]
 
